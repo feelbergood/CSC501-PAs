@@ -49,7 +49,6 @@ SYS =	blkcmp.c	blkequ.c	main.c		stacktrace.c	\
 	sleep100.c	sleep1000.c	sreset.c	suspend.c	\
 	unsleep.c	userret.c	wait.c		wakeup.c	\
 	write.c		xdone.c		pci.c		shutdown.c
-	printtos.c	printsegaddress.c
 
 TTY =	ttyalloc.c	ttycntl.c	ttygetc.c	ttyiin.c	\
 	ttyinit.c	ttynew.c	ttyopen.c	ttyputc.c	\
@@ -68,7 +67,7 @@ SYSOBJ = ${SYS:%.c=%.o}
 
 TTYOBJ = ${TTY:%.c=%.o}
 
-XOBJ = startup.o initialize.o intr.o clkint.o ctxsw.o zfunction.o
+XOBJ = startup.o initialize.o intr.o clkint.o ctxsw.o
 
 OBJ =	${COMOBJ} ${MONOBJ} ${SYSOBJ} ${TTYOBJ}		\
 	moncksum.o monclkint.o comint.o ethint.o montftp.o
@@ -138,9 +137,6 @@ tags: FRC
 
 ${LIB}/libxc.a: FRC
 	(cd ${LIB}/libxc; make install)
-
-zfunction.o: ../sys/zfunction.S
-	 ${CPP} ${SDEFS} ../sys/zfunction.S | ${AS} -o zfunction.o
 
 intr.o: ../sys/intr.S
 	${CPP} ${SDEFS} ../sys/intr.S | ${AS} ${ASFLAGS} -o intr.o
@@ -407,6 +403,23 @@ pci.o: ../sys/pci.c /usr/include/stdc-predef.h ../h/conf.h ../h/kernel.h \
 poolinit.o: ../sys/poolinit.c /usr/include/stdc-predef.h ../h/conf.h \
  ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/mark.h ../h/bufpool.h \
  ../h/stdio.h
+printsegaddress.o: ../sys/printsegaddress.c /usr/include/stdc-predef.h \
+ ../h/proc.h ../h/kernel.h ../h/systypes.h ../h/conf.h ../h/mem.h \
+ ../h/stdio.h /usr/include/stdlib.h /usr/include/features.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.8.5/include/stddef.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/byteswap-16.h \
+ /usr/include/sys/types.h /usr/include/time.h /usr/include/sys/select.h \
+ /usr/include/bits/select.h /usr/include/bits/sigset.h \
+ /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+ /usr/include/bits/pthreadtypes.h /usr/include/alloca.h \
+ /usr/include/bits/stdlib-float.h ../sys/lab0.h
+printtos.o: ../sys/printtos.c /usr/include/stdc-predef.h ../h/conf.h \
+ ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/proc.h ../h/stdio.h
 putc.o: ../sys/putc.c /usr/include/stdc-predef.h ../h/conf.h \
  ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/io.h
 queue.o: ../sys/queue.c /usr/include/stdc-predef.h ../h/conf.h \
@@ -486,6 +499,31 @@ write.o: ../sys/write.c /usr/include/stdc-predef.h ../h/conf.h \
  ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/io.h
 xdone.o: ../sys/xdone.c /usr/include/stdc-predef.h ../h/kernel.h \
  ../h/systypes.h ../h/conf.h ../h/mem.h ../h/stdio.h
+freemem.o: ../TMP/freemem.c /usr/include/stdc-predef.h ../h/conf.h \
+ ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/stdio.h
+printprocstks.o: ../TMP/printprocstks.c /usr/include/stdc-predef.h \
+ ../h/conf.h ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/proc.h \
+ ../h/stdio.h
+printsegaddress.o: ../TMP/printsegaddress.c /usr/include/stdc-predef.h \
+ ../h/proc.h ../h/kernel.h ../h/systypes.h ../h/conf.h ../h/mem.h \
+ ../h/stdio.h /usr/include/stdlib.h /usr/include/features.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.8.5/include/stddef.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/byteswap-16.h \
+ /usr/include/sys/types.h /usr/include/time.h /usr/include/sys/select.h \
+ /usr/include/bits/select.h /usr/include/bits/sigset.h \
+ /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+ /usr/include/bits/pthreadtypes.h /usr/include/alloca.h \
+ /usr/include/bits/stdlib-float.h ../TMP/lab0.h
+printsyscallsummary.o: ../TMP/printsyscallsummary.c \
+ /usr/include/stdc-predef.h ../h/conf.h ../h/kernel.h ../h/systypes.h \
+ ../h/mem.h ../h/proc.h ../h/stdio.h
+printtos.o: ../TMP/printtos.c /usr/include/stdc-predef.h ../h/conf.h \
+ ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/proc.h ../h/stdio.h
 ttyalloc.o: ../tty/ttyalloc.c /usr/include/stdc-predef.h ../h/conf.h \
  ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/tty.h ../h/stdio.h
 ttycntl.o: ../tty/ttycntl.c /usr/include/stdc-predef.h ../h/conf.h \

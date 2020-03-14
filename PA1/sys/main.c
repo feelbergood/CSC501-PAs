@@ -12,8 +12,5 @@
 int main()
 {
 	kprintf("\n\nHello World, Xinu lives\n\n");
-	kprintf("Zfunction(0xaabbccdd) = 0x%lX\n",zfunction(0xaabbccdd));
-	printsegaddress();
-	printtos();
 	return 0;
 }
