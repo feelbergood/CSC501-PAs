@@ -417,7 +417,7 @@ printsegaddress.o: ../sys/printsegaddress.c /usr/include/stdc-predef.h \
  /usr/include/bits/select.h /usr/include/bits/sigset.h \
  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
  /usr/include/bits/pthreadtypes.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-float.h ../sys/lab0.h
+ /usr/include/bits/stdlib-float.h
 printtos.o: ../sys/printtos.c /usr/include/stdc-predef.h ../h/conf.h \
  ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/proc.h ../h/stdio.h
 putc.o: ../sys/putc.c /usr/include/stdc-predef.h ../h/conf.h \
@@ -518,7 +518,7 @@ printsegaddress.o: ../TMP/printsegaddress.c /usr/include/stdc-predef.h \
  /usr/include/bits/select.h /usr/include/bits/sigset.h \
  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
  /usr/include/bits/pthreadtypes.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-float.h ../TMP/lab0.h
+ /usr/include/bits/stdlib-float.h
 printsyscallsummary.o: ../TMP/printsyscallsummary.c \
  /usr/include/stdc-predef.h ../h/conf.h ../h/kernel.h ../h/systypes.h \
  ../h/mem.h ../h/proc.h ../h/stdio.h
